@@ -63,7 +63,7 @@ def formal(name, msg):
     sendMessage(n,t,name,msg)
 
 
-if __name__ == "__main__":#程序运行前先点击qq的搜索
+if __name__ == "__main__":#在程序运行前，先点击qq的搜索
     name = "敦刻尔"
     #msg = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     msg = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
