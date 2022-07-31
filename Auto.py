@@ -8,6 +8,9 @@ from win32gui import *
 from datetime import datetime
 import pyautogui
 global widthExit, heightExit, h2, w2
+global index
+index = 1
+NoneList = []
 
 
 #将消息写入剪贴板
@@ -19,6 +22,8 @@ def setText(text):
 
 
 def GetTitle(name):
+    hasPerson = False
+    tempName = ""
     titles = set()
 
     def foo(hwnd, mouse):
@@ -31,7 +36,13 @@ def GetTitle(name):
     pattern = re.compile(r'(.*)' + name + r'(.*)')
     for t in lt:
         if (pattern.match(t)):
-            return t
+            hasPerson = True
+            tempName = t
+            break
+    if (hasPerson):
+        return tempName
+    else:
+        NoneList.append(name)
 
 
 #qq搜索栏搜索指定好友
@@ -61,19 +72,19 @@ def sendMessage(n, t, name, msg):
         win32gui.SendMessage(hand, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
         i = i + 1
         time.sleep(t)
-    print("运行完成!")
     time.sleep(3)
     win32gui.PostMessage(hand, win32con.WM_CLOSE, 0, 0)
 
 
 #按重复次数发送消息
 def formal(name, msg, winName='QQ'):
+    global index
     n = 1  #次数
     t = 0  #时间间隔
     searchUser(name, winName)
     time.sleep(1)
-    print("开始发送")
-    print('...')
+    print("开始发送第", index, "个")
+    index += 1
     sendMessage(n, t, name, msg)
 
 
@@ -83,24 +94,32 @@ def ClickExit(x, y):
 
 
 if __name__ == "__main__":  #在程序运行前，先点击qq的搜索
-    #widthExit = 1820#清空群聊搜索的输入框（像素点）
-    #heightExit = 495
-    #w2 = 1371#单独私聊的输入框中心(像素点)
-    #h2 = 577
+    ''' 
+    widthExit = 1820  #清空群聊搜索的输入框（像素点）
+    heightExit = 495
+    w2 = 1371  #单独私聊的输入框中心(像素点)
+    h2 = 577
+    '''
+    
     widthExit = float(input("清空群聊搜索的输入框（像素点）的横坐标："))
     heightExit = float(input("清空群聊搜索的输入框（像素点）的纵坐标："))
     w2 = float(input("单独私聊的输入框中心（像素点）的横坐标："))
     h2 = float(input("单独私聊的输入框中心（像素点）的纵坐标："))
-    stirngFileName =input("请输入保存名字的txt文件名(不包括后缀.txt)：")
-    file_obj = open("..\\"+stirngFileName+".txt", encoding="utf-8")
+    stringFileName =input("请输入保存名字的txt文件名(不包括后缀.txt)：")
+    
+    #stringFileName = "11"
+    file_obj = open("..\\" + stringFileName + ".txt", encoding="utf-8")
     all_lines = file_obj.readlines()
     abc = []
-    #groupL = "测试"#群名
+    #groupL = "测试"  #群名
     groupL = input("请输入群名：")
     #msg = "同学请打卡，谢谢配合！如果在校记得去做核酸并登记哦"
+    msg=input("请输入要发的消息内容")
     #msg = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     for line in all_lines:
         abc.append(line.rstrip())
     for i in range(len(abc)):
-        msg = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        #msg = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         formal(abc[i], msg, winName=groupL)
+    for i in range(len(NoneList)):
+        print(NoneList[i] + "不在群里" + "\n")
