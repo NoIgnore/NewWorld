@@ -44,6 +44,7 @@ def GetTitle(name):
         return tempName
     else:
         NoneList.append(name)
+        return "cha无CiRen"
 
 
 # qq搜索栏搜索指定好友
@@ -63,7 +64,10 @@ def searchUser(name, winName):
 
 def sendMessage(n, t, name, msg):
     # 自动定位聊天窗口
-    hand = win32gui.FindWindow('TXGuiFoundation', GetTitle(name))
+    name2 = GetTitle(name)
+    if name2 == "cha无CiRen":
+        return
+    hand = win32gui.FindWindow('TXGuiFoundation', name2)
     setText(msg)
     # 重复发送消息
     for i in range(1, n + 1):
