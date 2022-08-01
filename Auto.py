@@ -138,4 +138,4 @@ if __name__ == "__main__":
     if len(NoneList) > 0:
         with open(r'.\\非群里人员.txt', 'w') as f:
             for i in NoneList:
-                f.write(NoneList[i].rstrip() + '\n')
+                f.write(i + '\n')
