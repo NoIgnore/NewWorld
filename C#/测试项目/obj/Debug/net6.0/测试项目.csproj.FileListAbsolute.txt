@@ -1,0 +1,15 @@
+C:\Users\12091\Desktop\NewWorld\C#\测试项目\bin\Debug\net6.0\测试项目.exe
+C:\Users\12091\Desktop\NewWorld\C#\测试项目\bin\Debug\net6.0\测试项目.deps.json
+C:\Users\12091\Desktop\NewWorld\C#\测试项目\bin\Debug\net6.0\测试项目.runtimeconfig.json
+C:\Users\12091\Desktop\NewWorld\C#\测试项目\bin\Debug\net6.0\测试项目.dll
+C:\Users\12091\Desktop\NewWorld\C#\测试项目\bin\Debug\net6.0\测试项目.pdb
+C:\Users\12091\Desktop\NewWorld\C#\测试项目\obj\Debug\net6.0\测试项目.csproj.AssemblyReference.cache
+C:\Users\12091\Desktop\NewWorld\C#\测试项目\obj\Debug\net6.0\测试项目.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\12091\Desktop\NewWorld\C#\测试项目\obj\Debug\net6.0\测试项目.AssemblyInfoInputs.cache
+C:\Users\12091\Desktop\NewWorld\C#\测试项目\obj\Debug\net6.0\测试项目.AssemblyInfo.cs
+C:\Users\12091\Desktop\NewWorld\C#\测试项目\obj\Debug\net6.0\测试项目.csproj.CoreCompileInputs.cache
+C:\Users\12091\Desktop\NewWorld\C#\测试项目\obj\Debug\net6.0\测试项目.dll
+C:\Users\12091\Desktop\NewWorld\C#\测试项目\obj\Debug\net6.0\refint\测试项目.dll
+C:\Users\12091\Desktop\NewWorld\C#\测试项目\obj\Debug\net6.0\测试项目.pdb
+C:\Users\12091\Desktop\NewWorld\C#\测试项目\obj\Debug\net6.0\测试项目.genruntimeconfig.cache
+C:\Users\12091\Desktop\NewWorld\C#\测试项目\obj\Debug\net6.0\ref\测试项目.dll
