@@ -49,11 +49,10 @@ def GetTitle(name):
 
 # qq搜索栏搜索指定好友
 def searchUser(name, winName):
-    global widthExit, heightExit, h2, w2
     # 鼠标定位qq搜索栏
     hand = win32gui.FindWindow('TXGuiFoundation', winName)
     setText(name)
-    ClickExit(widthExit, heightExit)
+    ClickPoint(widthExit, heightExit)
     time.sleep(1)
     win32gui.SendMessage(hand, 770, 0, 0)
     # 表示停止1.5秒再运行（运行太快qq会反应不过来）
@@ -71,7 +70,7 @@ def sendMessage(n, t, name, msg):
     setText(msg)
     # 重复发送消息
     for i in range(1, n + 1):
-        ClickExit(w2, h2)
+        ClickPoint(w2, h2)
         time.sleep(0.5)
         win32gui.SendMessage(hand, 770, 0, 0)
         win32gui.SendMessage(hand, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
@@ -88,12 +87,12 @@ def formal(name, msg, winName='QQ'):
     t = 0  # 时间间隔
     searchUser(name, winName)
     time.sleep(1)
-    print("发送第", index, "个")
     index += 1
     sendMessage(n, t, name, msg)
+    print("发送第", index, "个")
 
 
-def ClickExit(x, y):
+def ClickPoint(x, y):
     pyautogui.moveTo(x, y, duration=0.5)
     pyautogui.click()
 
