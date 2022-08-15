@@ -11,7 +11,8 @@ global widthExit, heightExit
 global index
 index = 1
 NoneList = []
-
+list2 = []
+#明天要改进：直接foo里面获取到相同文本的句柄就return！
 # 将消息写入剪贴板
 
 
@@ -23,6 +24,7 @@ def setText(text):
 
 
 def GetTitle(name):
+    global list2
     hasPerson = False
     tempName = ""
     titles = set()
@@ -30,6 +32,7 @@ def GetTitle(name):
     def foo(hwnd, mouse):
         if IsWindow(hwnd) and IsWindowEnabled(hwnd) and IsWindowVisible(hwnd):
             titles.add(GetWindowText(hwnd))
+            list2.append(hwnd)
 
     EnumWindows(foo, 0)
     lt = [t for t in titles if t]
@@ -52,13 +55,14 @@ def searchUser(name, winName):
     # 鼠标定位qq搜索栏
     hand = win32gui.FindWindow('TXGuiFoundation', winName)
     setText(name)
-    ClickPoint(widthExit, heightExit)#清空搜索栏
+    ClickPoint(widthExit, heightExit)  #清空搜索栏
     time.sleep(0.5)
-    win32gui.SendMessage(hand, win32con.WM_PASTE, 0, 0)#粘贴
+    win32gui.SendMessage(hand, win32con.WM_PASTE, 0, 0)  #粘贴
     # 表示停止1.5秒再运行（运行太快qq会反应不过来）
     time.sleep(1.5)
-    win32gui.SendMessage(hand, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)#按下回车
-    win32gui.SendMessage(hand, win32con.WM_KEYUP, win32con.VK_RETURN, 0)#释放回车
+    win32gui.SendMessage(hand, win32con.WM_KEYDOWN, win32con.VK_RETURN,
+                         0)  #按下回车
+    win32gui.SendMessage(hand, win32con.WM_KEYUP, win32con.VK_RETURN, 0)  #释放回车
     return hand
 
 
@@ -73,8 +77,10 @@ def sendMessage(n, t, name, msg):
     for i in range(1, n + 1):
         time.sleep(0.5)
         win32gui.SendMessage(hand, win32con.WM_PASTE, 0, 0)
-        win32gui.SendMessage(hand, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)#按下回车
-        win32gui.SendMessage(hand, win32con.WM_KEYUP, win32con.VK_RETURN, 0)#释放回车
+        win32gui.SendMessage(hand, win32con.WM_KEYDOWN, win32con.VK_RETURN,
+                             0)  #按下回车
+        win32gui.SendMessage(hand, win32con.WM_KEYUP, win32con.VK_RETURN,
+                             0)  #释放回车
         i = i + 1
         time.sleep(t)
     time.sleep(3)
