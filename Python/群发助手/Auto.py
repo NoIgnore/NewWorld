@@ -7,7 +7,7 @@ from win32gui import *
 import pyautogui
 import os
 import pyautogui as pag
-global widthExit, heightExit, h2, w2
+global widthExit, heightExit
 global index
 index = 1
 NoneList = []
@@ -44,7 +44,7 @@ def GetTitle(name):
         return tempName
     else:
         NoneList.append(name)
-        return "cha无CiRen"
+        return "NothisPeople"
 
 
 # qq搜索栏搜索指定好友
@@ -52,28 +52,29 @@ def searchUser(name, winName):
     # 鼠标定位qq搜索栏
     hand = win32gui.FindWindow('TXGuiFoundation', winName)
     setText(name)
-    ClickPoint(widthExit, heightExit)
-    time.sleep(1)
-    win32gui.SendMessage(hand, 770, 0, 0)
+    ClickPoint(widthExit, heightExit)#清空搜索栏
+    time.sleep(0.5)
+    win32gui.SendMessage(hand, win32con.WM_PASTE, 0, 0)#粘贴
     # 表示停止1.5秒再运行（运行太快qq会反应不过来）
-    time.sleep(2)
-    win32gui.SendMessage(hand, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
+    time.sleep(1.5)
+    win32gui.SendMessage(hand, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)#按下回车
+    win32gui.SendMessage(hand, win32con.WM_KEYUP, win32con.VK_RETURN, 0)#释放回车
     return hand
 
 
 def sendMessage(n, t, name, msg):
     # 自动定位聊天窗口
     name2 = GetTitle(name)
-    if name2 == "cha无CiRen":
+    if name2 == "NothisPeople":
         return
     hand = win32gui.FindWindow('TXGuiFoundation', name2)
     setText(msg)
     # 重复发送消息
     for i in range(1, n + 1):
-        ClickPoint(w2, h2)
         time.sleep(0.5)
-        win32gui.SendMessage(hand, 770, 0, 0)
-        win32gui.SendMessage(hand, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
+        win32gui.SendMessage(hand, win32con.WM_PASTE, 0, 0)
+        win32gui.SendMessage(hand, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)#按下回车
+        win32gui.SendMessage(hand, win32con.WM_KEYUP, win32con.VK_RETURN, 0)#释放回车
         i = i + 1
         time.sleep(t)
     time.sleep(3)
@@ -123,11 +124,8 @@ def GetXY(str):
 if __name__ == "__main__":
     print("在程序运行前，先打开群聊天窗口并移除遮挡窗口")
     widthExit, heightExit = GetXY("清空按键")
-    w2, h2 = GetXY("输入框中心")
     print("清空群聊搜索的输入框（像素点）的横坐标为：", widthExit)
     print("清空群聊搜索的输入框（像素点）的纵坐标为：", heightExit)
-    print("单独私聊的输入框中心（像素点）的横坐标为：", w2)
-    print("单独私聊的输入框中心（像素点）的纵坐标为：", h2)
     stringFileName = input("请输入保存名字的txt文件名(不包括后缀.txt)：")
     groupL = input("请输入群名：")
     msg = input("请输入要发的消息内容：")
