@@ -69,8 +69,9 @@ def sendMessage(n, t, name, msg):
     # 自动定位聊天窗口
     name2 = GetTitle(name)
     if name2 == "NothisPeoplehhj_hhj":
-        print("查无此人：" + name)
+        print("第" + str(index) + "个查无此人---------------->" + name)
         return
+    print(name2)
     hand = win32gui.FindWindow('TXGuiFoundation', name2)
     setText(msg)
     # 重复发送消息
@@ -133,7 +134,7 @@ if __name__ == "__main__":
     print("清空群聊搜索的输入框（像素点）的横坐标为：", widthExit)
     print("清空群聊搜索的输入框（像素点）的纵坐标为：", heightExit)
     stringFileName = input("请输入保存名字的txt文件名(不包括后缀.txt)：")
-    gap = int(input("输入大约间隔时间数字/秒：（例如：5）  "))
+    gap = int(input("输入大约间隔时间数字/秒（例如：5）："))
     groupL = input("请输入群名：")
     msg = input("请输入要发的消息内容：")
     try:
