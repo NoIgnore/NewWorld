@@ -133,7 +133,7 @@ if __name__ == "__main__":
     print("清空群聊搜索的输入框（像素点）的横坐标为：", widthExit)
     print("清空群聊搜索的输入框（像素点）的纵坐标为：", heightExit)
     stringFileName = input("请输入保存名字的txt文件名(不包括后缀.txt)：")
-    gap = int(input("输入大约间隔时间/s："))
+    gap = int(input("输入大约间隔时间数字/秒：（例如：5）  "))
     groupL = input("请输入群名：")
     msg = input("请输入要发的消息内容：")
     try:
@@ -149,8 +149,9 @@ if __name__ == "__main__":
     for line in all_lines:
         abc.append(line.rstrip())
     for i in range(len(abc)):
-        formal(abc[i], msg, winName=groupL)
-        time.sleep(gap)
+        if (len(abc[i])) > 0:
+            formal(abc[i], msg, winName=groupL)
+            time.sleep(gap)
     if len(NoneList) > 0:
         with open(r'.\\非群里人员.txt', 'w') as f:
             for i in NoneList:
