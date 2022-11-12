@@ -80,16 +80,10 @@ def CreateRows(row1, levelData1, mainIndex1):
 
 if __name__ == '__main__':
     work_requests = []
-    time_start = time.time()  # 记录开始时间
-    # function()   执行的程序
-
-    with ProcessPoolExecutor(max_workers=10) as executor:
+    time_start = time.time()
+    with ProcessPoolExecutor(max_workers=8) as executor:
         for index, row in deal_level_data.iterrows():
             levelData = pd.DataFrame(columns=my_quarter_level_data_0)
-            executor.submit(CreateRows,
-                            row1=row,
-                            levelData1=levelData,
-                            mainIndex1=index)
             f: Future = executor.submit(CreateRows,
                                         row1=row,
                                         levelData1=levelData,
@@ -111,6 +105,6 @@ if __name__ == '__main__':
                 [my_quarter_level_data, myDiction[key]], ignore_index=True)
     my_quarter_level_data.to_csv(
         "C:\\Users\\12091\\Desktop\\NewWorld\\Python\\Data\\result.csv")
-    time_end = time.time()  # 记录结束时间
-    time_sum = time_end - time_start  # 计算的时间差为程序的执行时间，单位为秒/s
+    time_end = time.time()
+    time_sum = time_end - time_start
     print(time_sum)
